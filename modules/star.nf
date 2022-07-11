@@ -24,7 +24,6 @@ process STAR_INDEX_REFERENCE {
 process STAR_ALIGN {
     label 'star'
     publishDir params.outdir
-    memory '30 GB'
  
     input:
     tuple val(sample_name), path(reads_1), path(reads_2)
