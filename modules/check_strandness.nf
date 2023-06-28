@@ -10,7 +10,7 @@ process CHECK_STRANDNESS {
 
 	shell:
 	'''
-	echo pwd
+	echo "Current working directory: ${dir}"
 	check_strandedness -g !{annotation} -r1 !{reads[0]} -r2 !{reads[1]} --transcripts !{reference_cdna} > result.txt
 	result=$( tail -n 1 result.txt )
 	if [[ $result == *"likely unstranded"* ]]; then
