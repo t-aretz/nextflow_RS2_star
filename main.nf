@@ -70,7 +70,9 @@ workflow {
     CHECK_STRANDNESS( read_pairs_unsplit_ch, params.reference_cdna_ensembl, params.reference_annotation_ensembl )
     FASTP( read_pairs_unsplit_ch )
     STAR_INDEX_REFERENCE( params.reference_genome, params.reference_annotation )
-    
+
+    .println("Hello, World!")
+
     split_fastq(FASTP.out.sample_trimmed) \
 	| map { name, fastq, fastq1 -> tuple( groupKey(name, fastq.size()), fastq, fastq1 ) } \
         | transpose() \
