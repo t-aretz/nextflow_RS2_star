@@ -12,6 +12,7 @@ log.info """\
          =============================
          genome: ${params.reference_genome}
          annot : ${params.reference_annotation}
+	 cdn   : ${params.reference_cdna}
          reads : ${params.reads}
          outdir: ${params.outdir}
          """
@@ -67,7 +68,7 @@ workflow {
 
     Channel.fromFilePairs(params.reads, checkIfExists: true).set{ read_pairs_unsplit_ch }
 
-    CHECK_STRANDNESS( read_pairs_unsplit_ch, params.reference_cdna_ensembl, params.reference_annotation_ensembl )
+    CHECK_STRANDNESS( read_pairs_unsplit_ch, params.reference_cdna, params.reference_annotation_ensembl )
     FASTP( read_pairs_unsplit_ch )
     STAR_INDEX_REFERENCE( params.reference_genome, params.reference_annotation )
     
