@@ -26,7 +26,7 @@ process split_fastq {
     tuple val(name), path(fastq)
 
     output:
-    tuple val(name), path("*${name}*R1*.f*q"), path("*${name}*R2*.f*q")
+    tuple val(name), path("*-SRR25621827.R1.trimmed.fastq"), path("*-SRR25621827.R2.trimmed.fastq")
 
     script:
     """ 
