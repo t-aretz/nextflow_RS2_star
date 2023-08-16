@@ -23,6 +23,7 @@ process STAR_INDEX_REFERENCE {
 
 process STAR_ALIGN {
     label 'star'
+    tag "$reads_1"
     publishDir params.outdir
  
     input:

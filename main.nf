@@ -12,7 +12,7 @@ log.info """\
          =============================
          genome: ${params.reference_genome}
          annot : ${params.reference_annotation}
-	 cdn   : ${params.reference_cdna}
+	     cdna  : ${params.reference_cdna}
          reads : ${params.reads}
          outdir: ${params.outdir}
          """
