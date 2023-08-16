@@ -73,10 +73,10 @@ workflow {
     STAR_INDEX_REFERENCE( params.reference_genome, params.reference_annotation )
     
     split_fastq(FASTP.out.sample_trimmed) \
-	| map { name, fastq, fastq1 -> tuple( groupKey(name, fastq.size()), fastq, fastq1 ) } \
-        | transpose() \
-        | view()
-        | set{ read_pairs_ch }
+ 	| map { name, fastq, fastq1 -> tuple( groupKey(name, fastq.size()), fastq, fastq1 ) } \
+         | transpose() \
+         | view()
+         | set{ read_pairs_ch }
  
 
     STAR_ALIGN( read_pairs_ch, STAR_INDEX_REFERENCE.out, params.reference_annotation, CHECK_STRANDNESS.out.first() )
