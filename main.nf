@@ -72,16 +72,11 @@ workflow {
     FASTP( read_pairs_unsplit_ch )
     STAR_INDEX_REFERENCE( params.reference_genome, params.reference_annotation )
     
-    def chunk_names = ["chunk1", "chunk2", "chunk3"]  // Define your chunk names here
-
     split_fastq(FASTP.out.sample_trimmed) \
-        | map { name, fastq, fastq1 ->
-            def chunk_idx = read_pairs_ch.size() % chunk_names.size()
-            tuple(groupKey("${chunk_names[chunk_idx]}_${name}", fastq.size()), fastq, fastq1)
-        } \
-        | transpose() \
-        | view() \
-        | set { read_pairs_ch }
+ 	| map { name, fastq, fastq1 -> tuple( groupKey(name, fastq.size()), fastq, fastq1 ) } \
+         | transpose() \
+         | view()
+         | set{ read_pairs_ch }
  
 
     STAR_ALIGN( read_pairs_ch, STAR_INDEX_REFERENCE.out, params.reference_annotation, CHECK_STRANDNESS.out.first() )
