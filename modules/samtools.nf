@@ -1,5 +1,6 @@
 process SAMTOOLS {
     label 'samtools'
+    tag "$sam_file"
     publishDir params.outdir
     
     input:
