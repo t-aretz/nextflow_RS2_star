@@ -46,7 +46,7 @@ split = "60 50"                Error because the percentages don't add up to 100
 ```
 
 - splitFastq will rename the generated files in this patter:  _patternnotfinalyet_
-- The tasks will be labeled in the nxtflow workflow
+- The tasks will be labeled in the nextflow workflow
 - Add a _task-label + node_ json named __myconfig__ to your config which should look like this:
   
   ```
