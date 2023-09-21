@@ -37,7 +37,7 @@ Input reads:
 
 - split fastq will rename the generated files in this patter:
 - the tasks will be labeled in the nxtflow workflow
-- Add a _task-label + node_ json to your config which should look like this:
+- Add a _task-label + node_ json named __myconfig__ to your config which should look like this:
   
   ```
   k8s {
