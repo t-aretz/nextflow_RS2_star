@@ -45,8 +45,21 @@ split = "20 20 10 50"          5 new files with 20, 20, 10 and 50 percent of the
 split = "60 50"                Error because the percentages don't add up to 100
 ```
 
-- splitFastq will rename the generated files in this patter:  _patternnotfinalyet_
+- splitFastq will rename the generated files in this patter:  ~NumberOfFile-Percentage~{sample}.fastq 
+Examples:
+```
+split = "50 50"
+    ~01-50~{sample}.fastq
+    ~02-50~{sample}.fastq
+split = "20 20 10 50"
+    ~01-20~{sample}.fastq
+    ~02-20~{sample}.fastq
+    ~03-10~{sample}.fastq
+    ~04-50~{sample}.fastq
+```
+
 - The tasks will be labeled in the nextflow workflow
+- the label in the config file should be named like this: NumberOfFile-Percentage
 - Add a _task-label + node_ json named __myconfig__ to your config which should look like this:
   
   ```
@@ -58,15 +71,15 @@ split = "60 50"                Error because the percentages don't add up to 100
       name = 'workflow-scheduler'
       runAsUser = 0
       myconfig = [
-         "label1": "node12",
-         "label2": "node15",
-         "label2": "node12"
+         "01-20": "node12",
+         "02-30": "node15",
+         "03-50": "node12"
       ]
     } 
   }
   ```
 
-  - All other tasks (whose label are not in the __myconfig__) will be scheduled using the strategy FairAssign (can be customized soon too)
+  - All other tasks (whose label are not in the __myconfig__) will be scheduled using the strategy FairAssig
     
 ## How to run the workflow
 
