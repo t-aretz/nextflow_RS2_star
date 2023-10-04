@@ -45,7 +45,7 @@ split = "20 20 10 50"          5 new files with 20, 20, 10 and 50 percent of the
 split = "60 50"                Error because the percentages don't add up to 100
 ```
 
-- splitFastq will rename the generated files in this patter:  ~NumberOfFile-Percentage~{sample}.fastq 
+- splitFastq will rename the generated files in this patter:  {~}NumberOfFile-Percentage{~}{sample}.fastq 
 Examples:
 ```
 split = "50 50"
